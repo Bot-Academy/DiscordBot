@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 
-
 class Mods(commands.Cog):
 
     def __init__(self, client):
@@ -28,7 +27,6 @@ class Mods(commands.Cog):
         banned_user = await ctx.guild.bans()
         discord.Member
         member_name, member_discriminator = member.split("#")
-        discord.User.discriminator
         for ban_entry in banned_user:
             user = ban_entry.user
             if(user.name, user.discriminator) == (member_name, member_discriminator):
