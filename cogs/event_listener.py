@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands import Context
 
 
 class Event_Listener(commands.Cog):
@@ -12,17 +13,11 @@ class Event_Listener(commands.Cog):
         print("[Status] Ready")
 
     @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.CommandNotFound):
-            await ctx.send("> Command does not exist")
+    async def on_command_error(self, ctx: Context, error):
+        embed = discord.Embed()
 
-        elif isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send("> Please add all required arguments")
-
-        elif isinstance(error, commands.BotMissingAnyRole):
-            await ctx.send("> You do not have permmission to use this command")
-
-        await ctx.send(error)
+        embed.add_field(name="**Error**", value=("> " + str(error)))
+        await ctx.send(embed=embed)
 
 
 def setup(client):
