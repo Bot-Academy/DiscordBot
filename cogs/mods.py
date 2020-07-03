@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Context
+from discord.utils import get
 
 from bot import client
 
@@ -14,6 +15,18 @@ class Mods(commands.Cog):
     @commands.has_any_role("Owner")
     async def clear(self, ctx: Context, amount=10):
         await ctx.channel.purge(limit=amount)
+
+    @commands.command()
+    @commands.has_any_role("Owner")
+    async def mute(self, ctx: Context, member: discord.Member, *, reason=None):
+        role = get(member.guild.roles, name="mute")
+        await member.add_roles(role)
+
+    @commands.command()
+    @commands.has_any_role("Owner")
+    async def unmute(self, ctx: Context, member: discord.Member):
+        role = get(member.guild.roles, name="mute")
+        await member.remove_roles(role)
 
     @commands.command()
     @commands.has_any_role("Owner")
