@@ -17,7 +17,7 @@ class Event_Listener(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: Context, error):
         embed = discord.Embed()
-
+        embed.color = discord.Color.red()
         embed.add_field(name="**Error**", value=("> " + str(error)))
         await ctx.send(embed=embed)
 

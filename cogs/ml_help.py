@@ -5,13 +5,9 @@ from discord.ext.commands import Paginator, Context
 from bot import client
 
 
-class ML_Help():
+class ML_Help(commands.Cog):
     def __init__(self, client: client):
         self.client = client
-
-    @commands.Command()
-    async def mlhelp(self, ctx: Context):
-        pass
 
 
 def setup(client: client):
