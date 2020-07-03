@@ -2,10 +2,12 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Context
 
+from bot import client
+
 
 class Mods(commands.Cog):
 
-    def __init__(self, client):
+    def __init__(self, client: client):
         self.client = client
 
     @commands.command()
@@ -36,5 +38,5 @@ class Mods(commands.Cog):
                 return
 
 
-def setup(client):
+def setup(client: client):
     client.add_cog(Mods(client))

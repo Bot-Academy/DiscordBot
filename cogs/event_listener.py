@@ -2,10 +2,12 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Context
 
+from bot import client
+
 
 class Event_Listener(commands.Cog):
 
-    def init(self, client):
+    def init(self, client: client):
         self.client = client
 
     @commands.Cog.listener()
@@ -20,5 +22,5 @@ class Event_Listener(commands.Cog):
         await ctx.send(embed=embed)
 
 
-def setup(client):
+def setup(client: client):
     client.add_cog(Event_Listener(client))
